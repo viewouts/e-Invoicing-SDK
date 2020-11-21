@@ -1,0 +1,172 @@
+{		
+	"documents":  [		
+	  {		
+		"issuer": {		
+		  "address": {		
+			"branchID":	 "0"	,
+			"country":	 "EG"	,
+			"governate":	 "القاهرة"	,
+			"regionCity":	 "حلوان"	,
+			"street":	 "ش 19 تقسيم النصر للسيارات"	,
+			"buildingNumber":	 "48"	,
+			"postalCode":	 ""	,
+			"floor":	 ""	,
+			"room":	 ""	,
+			"landmark":	 ""	,
+			"additionalInformation":	 ""	
+		  },		
+		  "type":	 "B"	,
+		  "id":	 "538486562",	
+		  "name":	 " Clouds "	
+		},		
+		 "receiver":	 {	
+		  "address":	 {	
+			"country":	 "EG"	,
+			"governate":	 "القاهرة"	,
+			"regionCity":	 "حلوان",	
+			"street":	 "عزبة الوالدة",	
+			"buildingNumber":	 "44",	
+			"postalCode":	 "",	
+			"floor":	 "",	
+			"room":	 "",	
+			"landmark":	 "",	
+			"additionalInformation" :	""	
+		  },		
+		  "type":	 "P"	,
+		  "id":	 "27912100200814"	,
+		  "name":	 "احمد عصام"	
+		},		
+		"documentType":	 "I"	,
+		"documentTypeVersion":	 "0.9"	,
+		"dateTimeIssued":	 "2020-11-15T10:56:10Z"	,
+		"taxpayerActivityCode":	 "0111"	,
+		"internalID":	 "194765"	,
+		"purchaseOrderReference":	 ""	,
+		"purchaseOrderDescription":	 ""	,
+		"salesOrderReference":	 ""	,
+		"salesOrderDescription":	 ""	,
+		"proformaInvoiceNumber":	 ""	,
+		"payment":	 {	
+		  "bankName":	 ""	,
+		  "bankAddress":	 ""	,
+		  "bankAccountNo":	 ""	,
+		  "bankAccountIBAN":	 ""	,
+		  "swiftCode":	 ""	,
+		  "terms":	 ""	
+		},		
+		"delivery":	 {	
+		  "approach":	 ""	,
+		  "packaging":	 ""	,
+		  "dateValidity":	 ""	,
+		  "exportPort":	 ""	,
+		  "countryOfOrigin":	 "EG"	,
+		  "grossWeight":	0	,
+		  "netWeight":	0	,
+		  "terms":	 ""	
+		},		
+		"invoiceLines":	 	
+	  [		
+		  {		
+			"description":	 "As per Taxpayer description"	,
+			"itemType":	 "GPC"	,
+			"itemCode":	 "10005761"	,
+			"internalCode":	 "IC99"	,
+			"unitType":	 "EA"	,
+			"quantity":	10	,
+			"unitValue":	{	
+			  "currencySold":	"EGP"	,
+			  "amountSold":	0.00	,
+			  "currencyExchangeRate":	0.00	,
+			  "amountEGP":	500.00	
+				},	
+			"salesTotal":	5000.00	,
+			"valueDifference":	0.00	,
+			"totalTaxableFees":	0.00	,
+			"discount":	 {	
+			  "rate":	2.00	,
+			  "amount":	100.00	
+			},		
+			"netTotal":	4900.00	,
+			"itemsDiscount":	100.00	,
+			"taxableItems": [		
+			  {		
+				"taxType":	"T1"	,
+				"subType":	"N/A"	,
+				"rate":	14.00	,
+				"amount":	686.00	
+			  },		
+			  {		
+				"taxType":	"T2"	,
+				"subType":	"N/A"	,
+				"rate":	0.00	,
+				"amount":	0.00	
+			  },		
+			  {		
+				"taxType":	"T3"	,
+				"subType":	"N/A"	,
+				"rate":	0.00	,
+				"amount":	0.00	
+			  },		
+			  {		
+				"taxType":	"T4"	,
+				"subType":	"N/A"	,
+				"rate":	0.00	,
+				"amount":	0.00	
+			  },		
+			  {		
+				"taxType":	"T5"	,
+				"subType":	"N/A"	,
+				"rate":	0.00	,
+				"amount":	0.00	
+			  },		
+			  {		
+				"taxType":	"T20"	,
+				"subType":	"N/A"	,
+				"rate":	0.00	,
+				"amount":	0.00	
+			  }		
+			],		
+			"total":	5486.00	
+		  }],		
+		"totalSalesAmount":	5000.00	,
+		"totalDiscountAmount":	100.00	,
+		"netAmount":	4900.00	,
+		"taxTotals":[	 	
+		  {		
+			"taxType":	"T1"	,
+			"amount":	686.00	
+		  },		
+		  {		
+			"taxType":	"T2"	,
+			"amount":	0.00	
+		  },		
+		  {		
+			"taxType":	"T3"	,
+			"amount":	0.00	
+		  },		
+		  {		
+			"taxType":	"T4"	,
+			"amount":	0.00	
+		  },		
+		  {		
+			"taxType":	"T5"	,
+			"amount":	0.00	
+		  },		
+		  {		
+			"taxType":	"T20"	,
+			"amount":	0.00	
+		  }		
+		],		
+		"extraDiscountAmount":	0.00	,
+		"totalItemsDiscountAmount":	100.00	,
+		"totalAmount":	5486.00	,
+		"signatures":	 [	
+		  {		
+			"signatureType":	 "I"	,
+		"value":	"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"	
+		  }		
+		]		
+	  }		
+	]		
+  }		
+  

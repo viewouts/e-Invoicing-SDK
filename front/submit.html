@@ -39,6 +39,7 @@
 
 
             <input type="hidden" name="document" id="document_input">
+            <span style="color: red;" id="#error"></span>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 
 
@@ -56,25 +57,21 @@
         const cors_url = 'http://localhost:8080/';
         const base_url = 'https://api.preprod.invoicing.eta.gov.eg/';
         const token = localStorage.getItem("token");
-        console.log($('#document').val())
+        let content_type = '';
 
         $('.form-document').submit((e) => {
             // console.log(JSON.stringify($('#document').val()))
             // const doc = $('#document').val();
 
             event.preventDefault();
-            const documents = [];
-            documents.push(JSON.parse($('#document_input').val()));
+            const reqData = $('#document_input').val();
 
-            // var reqData = {
-            //     "documents": "[" + JSON.parse() + "]"
-            // }
-            console.log(documents);
+            console.log(JSON.stringify(reqData));
 
-            axios.post(cors_url + base_url + 'api/v1/documentsubmissions',{documents}, {
+            axios.post(cors_url + base_url + 'api/v1/documentsubmissions',$('#document_input').val(), {
                     headers: {
                         'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json'
+                        'Content-Type': content_type
 
                     }
                 })
@@ -82,7 +79,7 @@
                     let docs = response.data.result;
 
                     console.log(response);
-                    // window.location.href = "documents.html";
+                    window.location.href = "documents.html";
 
                 }).catch(error => {
                     console.log(error.response.data.error);
@@ -98,6 +95,15 @@
                 document.getElementById('document_input').value = fr.result;
             }
             fr.readAsText(this.files[0]);
+            var extension = this.files[0].name.split('.').pop().toLowerCase();
+            if(extension === 'json'){
+                content_type = 'application/json'
+            }else if(extension === 'xml'){
+                content_type = 'application/xml'
+            }else{
+                $('#error').text = 'Unsupported file type';
+            }
+            console.log(content_type);
         })
     </script>
 </body>
