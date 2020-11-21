@@ -1,0 +1,137 @@
+<issuer>
+                <type>B</type>
+                <id>113317713</id>
+                <name>Issuer Name 0</name>
+                <address>
+                    <buildingNumber>Bldg. 0</buildingNumber>
+                    <room>123</room>
+                    <floor>16</floor>
+                    <street>Address 2-0 line 2</street>
+                    <landmark>near circle</landmark>
+                    <additionalInformation>beside townhall</additionalInformation>
+                    <governate>Egypt</governate>
+                    <regionCity>Cairo</regionCity>
+                    <postalCode>098607</postalCode>
+                    <country>EG</country>
+                    <branchID>111</branchID>
+                </address>
+            </issuer>
+            <receiver>
+                <type>B</type>
+                <id>100427944</id>
+                <name>Receiver name 0</name>
+                <address>
+                    <buildingNumber>Bldg. 2</buildingNumber>
+                    <room>110</room>
+                    <floor>8</floor>
+                    <street>Address 1-0</street>
+                    <landmark>near circle</landmark>
+                    <additionalInformation>beside townhall</additionalInformation>
+                    <governate>Egypt</governate>
+                    <regionCity>Cairo</regionCity>
+                    <postalCode>098661</postalCode>
+                    <country>EG</country>
+                </address>
+            </receiver>
+            <documentType>D</documentType>
+            <documentTypeVersion>0.9</documentTypeVersion>
+            <dateTimeIssued>2020-09-22T17:30:22Z</dateTimeIssued>
+            <taxpayerActivityCode>ACC0</taxpayerActivityCode>
+            <internalID>IID0</internalID>
+            <purchaseOrderReference>1230</purchaseOrderReference>
+            <purchaseOrderDescription>purchase Order description</purchaseOrderDescription>
+            <salesOrderReference>1101</salesOrderReference>
+            <salesOrderDescription>Sales Order Desciprtion</salesOrderDescription>
+            <references>
+                <reference>8JR2PQV5H43DKKRN8J6871ME10</reference>
+            </references>
+            <payment>
+                <bankName>UCI Bank</bankName>
+                <bankAddress>UCIBank MAS</bankAddress>
+                <bankAccountNo>1234567</bankAccountNo>
+                <bankAccountIBAN></bankAccountIBAN>
+                <swiftCode></swiftCode>
+                <terms>Terms applicable</terms>
+            </payment>
+            <delivery>
+                <approach>Courier</approach>
+                <packaging>Container</packaging>
+                <dateValidity>2020-06-22T17:30:22Z</dateValidity>
+                <exportPort>MASPort</exportPort>
+                <countryOfOrigin>MAS</countryOfOrigin>
+                <grossWeight>123.45</grossWeight>
+                <netWeight>122.87</netWeight>
+                <terms>Terms are applicable</terms>
+            </delivery>
+            <invoiceLines>
+                <invoiceLine>
+                    <description>Invoice line description 0</description>
+                    <itemType>IT0</itemType>
+                    <itemCode>10001132</itemCode>
+                    <unitType>UT0</unitType>
+                    <quantity>1</quantity>
+                    <unitValue>
+                        <currencySold>EGP</currencySold>
+                        <amountSold>10</amountSold>
+                        <amountEGP>10</amountEGP>
+                        <currencyExchangeRate>1</currencyExchangeRate>
+                    </unitValue>
+                    <salesTotal>10</salesTotal>
+                    <discount>
+                        <rate>0</rate>
+                        <amount>0</amount>
+                    </discount>
+                    <taxableItems>
+                        <taxableItem>
+                            <taxType>T1</taxType>
+                            <amount>0</amount>
+                            <subType>VAT-Sub</subType>
+                            <rate>0</rate>
+                        </taxableItem>
+                        <taxableItem>
+                            <taxType>T2</taxType>
+                            <amount>0</amount>
+                            <subType>AMT-Sub</subType>
+                            <rate>0</rate>
+                        </taxableItem>
+                        <taxableItem>
+                            <taxType>T3</taxType>
+                            <amount>0</amount>
+                            <subType>AET-Sub</subType>
+                            <rate>0</rate>
+                        </taxableItem>
+                    </taxableItems>
+                    <internalCode>IC0</internalCode>
+                    <itemsDiscount>0</itemsDiscount>
+                    <netTotal>10</netTotal>
+                    <totalTaxableFees>0</totalTaxableFees>
+                    <valueDifference>0</valueDifference>
+                    <total>10</total>
+                </invoiceLine>
+            </invoiceLines>
+            <totalSalesAmount>10</totalSalesAmount>
+            <totalDiscountAmount>0</totalDiscountAmount>
+            <netAmount>10</netAmount>
+            <taxTotals>
+                <taxTotal>
+                    <taxType>T1</taxType>
+                    <amount>0</amount>
+                </taxTotal>
+                <taxTotal>
+                    <taxType>T2</taxType>
+                    <amount>0</amount>
+                </taxTotal>
+                <taxTotal>
+                    <taxType>T3</taxType>
+                    <amount>0</amount>
+                </taxTotal>
+            </taxTotals>
+            <totalAmount>10</totalAmount>
+            <totalItemsDiscountAmount>0</totalItemsDiscountAmount>
+            <extraDiscountAmount>0</extraDiscountAmount>
+            <signatures>
+                <signature>
+                    <signatureType>I</signatureType>
+                    <value>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</value>
+                </signature>
+            </signatures>

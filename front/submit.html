@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egyptian e-Invoicing SDK</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+        $(function () {
+            $("#header").load("header.html");
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id='header'>
+
+    </div>
+    <div class="container-fluid">
+        <div class="title">
+            <h1>Submit Documents</h1>
+        </div>
+        <label for="document">
+            <h3>Upload Document</h3>
+        </label>
+        <input type="file" id="document" class="form-control-file" accept=".json, .xml">
+        <form class="form-document" method="POST" action="#">
+
+
+            <input type="hidden" name="document" id="document_input">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+
+
+        </form>
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const cors_url = 'http://localhost:8080/';
+        const base_url = 'https://api.preprod.invoicing.eta.gov.eg/';
+        const token = localStorage.getItem("token");
+        console.log($('#document').val())
+
+        $('.form-document').submit((e) => {
+            // console.log(JSON.stringify($('#document').val()))
+            // const doc = $('#document').val();
+
+            event.preventDefault();
+            const documents = [];
+            documents.push(JSON.parse($('#document_input').val()));
+
+            // var reqData = {
+            //     "documents": "[" + JSON.parse() + "]"
+            // }
+            console.log(documents);
+
+            axios.post(cors_url + base_url + 'api/v1/documentsubmissions',{documents}, {
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+
+                    }
+                })
+                .then(response => {
+                    let docs = response.data.result;
+
+                    console.log(response);
+                    // window.location.href = "documents.html";
+
+                }).catch(error => {
+                    console.log(error.response.data.error);
+                    window.location.href = "index.html";
+                });
+
+        })
+
+
+        document.getElementById('document').addEventListener('change', function () {
+            let fr = new FileReader();
+            fr.onload = function () {
+                document.getElementById('document_input').value = fr.result;
+            }
+            fr.readAsText(this.files[0]);
+        })
+    </script>
+</body>
+
+</html>
