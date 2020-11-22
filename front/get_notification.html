@@ -73,7 +73,9 @@
             if (notifications.length > 0) {
                 notifications.forEach(notification => {
                     $('.list-group').append(
-                        `<li class="list-group-item">${notification.finalMessage} at ${notification.receivedDateTime}</li>`
+                        `<li class="list-group-item">
+                        Receiver: ${notification.receiverName} ,status: ${notification.status}, address: ${notification.address},
+                        ${notification.finalMessage} at ${notification.receivedDateTime}</li>`
                     )
                 });
             } else {
