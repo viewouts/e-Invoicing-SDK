@@ -45,7 +45,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-        const cors_url = 'http://localhost:8080/';
+        const cors_url = 'http://ec2-3-135-65-51.us-east-2.compute.amazonaws.com:8080/';
         const base_url = 'https://api.preprod.invoicing.eta.gov.eg/';
         const token = localStorage.getItem("token");
 
@@ -66,7 +66,10 @@
 
             }).catch(error => {
                 console.log(error.response.data.error);
-                // window.location.href = "index.html";
+                if(error.response.status === 401){
+                    window.location.href = "index.html";
+
+                }
             });
 
         function attachData(notifications) {

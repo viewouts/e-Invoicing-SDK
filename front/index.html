@@ -36,7 +36,7 @@
 
     <script>
         
-        const cors_url = 'http://localhost:8080/';
+        const cors_url = 'http://ec2-3-135-65-51.us-east-2.compute.amazonaws.com:8080/';
         $('.form-signin').submit((e) => {
             console.log('Basic '+btoa($('#inputID').val()+':'+$('#inputSecret').val()));
             event.preventDefault();

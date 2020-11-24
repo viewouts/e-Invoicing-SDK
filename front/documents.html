@@ -90,7 +90,7 @@
                     <div class="modal-body">
                         <label> Enter reason </label>
                         <input type="text" id="reject-reason" />
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -108,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-        const cors_url = 'http://localhost:8080/';
+        const cors_url = 'http://ec2-3-135-65-51.us-east-2.compute.amazonaws.com:8080/';
         const base_url = 'https://api.preprod.invoicing.eta.gov.eg/';
         const token = localStorage.getItem("token");
 
@@ -122,36 +122,40 @@
             })
             .then(response => {
                 let docs = response.data.result;
-
+                console.log(response);
                 console.log(docs);
                 attachData(docs);
 
             }).catch(error => {
                 console.log(error.response.data.error);
-                window.location.href = "index.html";
+                if (error.response.status === 401) {
+                    window.location.href = "index.html";
+
+                }
+
             });
 
         function attachData(docs) {
             docs.forEach(doc => {
-               
-                    $('#table').append(
-                        '<tr>' +
-                        '<td>' + doc.internalId + '</td>' +
-                        '<td> <a href="' + doc.publicUrl + '" target="_blank">URL</a> </td>' +
-                        '<td>' + doc.receiverName + '</td>' +
-                        '<td>' + doc.totalSales + '</td>' +
-                        '<td>' + doc.totalDiscount + '</td>' +
-                        '<td>' + doc.total + '</td>' +
-                        '<td>' + doc.status + '</td>' +
-                        '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
-                        '" id="cancel-btn" onClick="cancelID(this.value)" data-toggle="modal" data-target="#exampleModal">Cancel</button> </td>' +
-                        '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
-                        '" id="cancel-btn" onClick="rejectID(this.value)" data-toggle="modal" data-target="#rejectModal">Reject</button> </td>' +
-                        '</tr>'
-                    )
-                
-                    
-                
+
+                $('#table').append(
+                    '<tr>' +
+                    '<td>' + doc.internalId + '</td>' +
+                    '<td> <a href="' + doc.publicUrl + '" target="_blank">URL</a> </td>' +
+                    '<td>' + doc.receiverName + '</td>' +
+                    '<td>' + doc.totalSales + '</td>' +
+                    '<td>' + doc.totalDiscount + '</td>' +
+                    '<td>' + doc.total + '</td>' +
+                    '<td>' + doc.status + '</td>' +
+                    '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
+                    '" id="cancel-btn" onClick="cancelID(this.value)" data-toggle="modal" data-target="#exampleModal">Cancel</button> </td>' +
+                    '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
+                    '" id="cancel-btn" onClick="rejectID(this.value)" data-toggle="modal" data-target="#rejectModal">Reject</button> </td>' +
+                    '</tr>'
+                )
+
+
+
 
             });
         }
@@ -180,10 +184,14 @@
                     console.log(error.response.data.error);
                     let error_code = error.response.data.error.code;
                     console.log(error_code)
-                    if(error_code === 'ValidationError'){
-                        $('#exampleModal .modal-body').append('<div><span style="color:red;">Can not cancel an invalid document</span></div>')
+                    if (error_code === 'ValidationError') {
+                        $('#exampleModal .modal-body').append(
+                            '<div><span style="color:red;">Can not cancel an invalid document</span></div>')
                     }
-                    // window.location.href = "index.html";
+                    if (error.response.status === 401) {
+                        window.location.href = "index.html";
+
+                    }
                 });
         }
 
@@ -208,11 +216,18 @@
                 }).catch(error => {
                     console.log(error.response.data.error.code);
                     let error_code = error.response.data.error.code;
-                    if(error_code === 'AccessDenied'){
-                        $('#rejectModal .modal-body').append('<div><span style="color:red;">You are not authorized to reject this document</span></div>')
+                    if (error_code === 'AccessDenied') {
+                        $('#rejectModal .modal-body').append(
+                            '<div><span style="color:red;">You are not authorized to reject this document</span></div>'
+                        )
                     }
-                    if(error_code === 'ValidationError'){
-                        $('#rejectModal .modal-body').append('<div><span style="color:red;">Can not reject an invalid document</span></div>')
+                    if (error_code === 'ValidationError') {
+                        $('#rejectModal .modal-body').append(
+                            '<div><span style="color:red;">Can not reject an invalid document</span></div>')
+                    }
+                    if (error.response.status === 401) {
+                        window.location.href = "index.html";
+
                     }
                 });
         }
