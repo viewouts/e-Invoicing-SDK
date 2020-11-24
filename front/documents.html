@@ -41,7 +41,8 @@
                     <th scope="col">Total Sales</th>
                     <th scope="col">Total Discount</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Document status</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody id="table">
@@ -89,6 +90,7 @@
                     <div class="modal-body">
                         <label> Enter reason </label>
                         <input type="text" id="reject-reason" />
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -131,22 +133,25 @@
 
         function attachData(docs) {
             docs.forEach(doc => {
-                if (doc.status == 'Valid') {
+               
                     $('#table').append(
                         '<tr>' +
                         '<td>' + doc.internalId + '</td>' +
-                        '<td> <a href="' + doc.publicUrl + '">URL</a> </td>' +
+                        '<td> <a href="' + doc.publicUrl + '" target="_blank">URL</a> </td>' +
                         '<td>' + doc.receiverName + '</td>' +
                         '<td>' + doc.totalSales + '</td>' +
                         '<td>' + doc.totalDiscount + '</td>' +
                         '<td>' + doc.total + '</td>' +
+                        '<td>' + doc.status + '</td>' +
                         '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
                         '" id="cancel-btn" onClick="cancelID(this.value)" data-toggle="modal" data-target="#exampleModal">Cancel</button> </td>' +
                         '<td><button class="btn btn-primary btn-sm" value="' + doc.uuid +
                         '" id="cancel-btn" onClick="rejectID(this.value)" data-toggle="modal" data-target="#rejectModal">Reject</button> </td>' +
                         '</tr>'
                     )
-                }
+                
+                    
+                
 
             });
         }
@@ -173,6 +178,11 @@
 
                 }).catch(error => {
                     console.log(error.response.data.error);
+                    let error_code = error.response.data.error.code;
+                    console.log(error_code)
+                    if(error_code === 'ValidationError'){
+                        $('#exampleModal .modal-body').append('<div><span style="color:red;">Can not cancel an invalid document</span></div>')
+                    }
                     // window.location.href = "index.html";
                 });
         }
@@ -196,8 +206,14 @@
                     console.log(response);
 
                 }).catch(error => {
-                    console.log(error.response.data.error);
-                    // window.location.href = "index.html";
+                    console.log(error.response.data.error.code);
+                    let error_code = error.response.data.error.code;
+                    if(error_code === 'AccessDenied'){
+                        $('#rejectModal .modal-body').append('<div><span style="color:red;">You are not authorized to reject this document</span></div>')
+                    }
+                    if(error_code === 'ValidationError'){
+                        $('#rejectModal .modal-body').append('<div><span style="color:red;">Can not reject an invalid document</span></div>')
+                    }
                 });
         }
 
