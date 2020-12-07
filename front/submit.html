@@ -23,32 +23,44 @@
 </head>
 
 <body>
+    
 
-    <div id='header'>
+        <div id='header'>
 
-    </div>
-    <div class="container-fluid">
-        <div class="title">
-            <h1>Submit Documents</h1>
         </div>
-        <label for="document">
-            <h3>Upload Document</h3>
-        </label>
-        <input type="file" id="document" class="form-control-file" accept=".json, .xml">
-        <form class="form-document" method="POST" action="#">
+        <div id="spinner-back"></div>
+        <div id="spinner-front">
+            <img src="imgs/tenor.gif" /><br>
+            Submiuting data...
+        </div>
+
+        <div class="container-fluid">
+            <div class="title">
+                <h1>Submit Documents</h1>
+            </div>
+            <label for="document">
+                <h3>Upload Document</h3>
+            </label>
+            <input type="file" id="document" class="form-control-file" accept=".json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+            <form class="form-document" method="POST" action="#">
 
 
-            <input type="hidden" name="document" id="document_input">
-            <span style="color: red;" id="#error"></span>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                <input type="hidden" name="document" id="document_input">
+                <span style="color: red;" id="#error"></span>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 
 
 
-        </form>
+            </form>
 
 
 
-    </div>
+        </div>
+        
+        
+  
+
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -57,10 +69,11 @@
         const cors_url = 'http://ec2-3-135-65-51.us-east-2.compute.amazonaws.com:8080/';
         const base_url = 'https://api.preprod.invoicing.eta.gov.eg/';
         const token = localStorage.getItem("token");
-        let content_type = '';
+        let content_type = 'multipart/form-data';
 
         $('.form-document').submit((e) => {
             event.preventDefault();
+            show();
             const reqData = $('#document_input').val();
 
             console.log(JSON.stringify(reqData));
@@ -76,6 +89,7 @@
                     let docs = response.data.result;
 
                     console.log(response);
+                    hide();
                     window.location.href = "documents.html";
 
                 }).catch(error => {
@@ -89,22 +103,33 @@
         })
 
 
-        document.getElementById('document').addEventListener('change', function () {
-            let fr = new FileReader();
-            fr.onload = function () {
-                document.getElementById('document_input').value = fr.result;
-            }
-            fr.readAsText(this.files[0]);
-            var extension = this.files[0].name.split('.').pop().toLowerCase();
-            if (extension === 'json') {
-                content_type = 'application/json'
-            } else if (extension === 'xml') {
-                content_type = 'application/xml'
-            } else {
-                $('#error').text = 'Unsupported file type';
-            }
-            console.log(content_type);
-        })
+        // document.getElementById('document').addEventListener('change', function () {
+        //     let fr = new FileReader();
+        //     fr.onload = function () {
+        //         document.getElementById('document_input').value = fr.result;
+        //     }
+        //     fr.readAsText(this.files[0]);
+        //     var extension = this.files[0].name.split('.').pop().toLowerCase();
+        //     if (extension === 'json') {
+        //         content_type = 'application/json'
+        //     } else if (extension === 'xml') {
+        //         content_type = 'application/xml'
+        //     } else {
+        //         $('#error').text = 'Unsupported file type';
+        //     }
+        //     console.log(content_type);
+        // })
+
+
+        function show() {
+            document.getElementById("spinner-back").classList.add("show");
+            document.getElementById("spinner-front").classList.add("show");
+        }
+
+        function hide() {
+            document.getElementById("spinner-back").classList.remove("show");
+            document.getElementById("spinner-front").classList.remove("show");
+        }
     </script>
 </body>
 
