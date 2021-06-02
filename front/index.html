@@ -44,7 +44,7 @@
                 "grant_type": "client_credentials",
             }
 
-            axios.post(cors_url + 'https://id.preprod.eta.gov.eg/connect/token',$.param(reqData), {
+            axios.post(cors_url + 'https://id.eta.gov.eg/connect/token',$.param(reqData), {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                         'Authorization': 'Basic '+btoa($('#inputID').val()+':'+$('#inputSecret').val()),
